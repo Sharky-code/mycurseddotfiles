@@ -1,7 +1,11 @@
 " Vim news:
-" Remeber airline themes, when you want to change the status line to something related to the colorscheme you are using
+" danymat/neogen stuff
+" change the rainbow brackets to rainbow because it is really ugly (one
+" bracket = white)
+" onsails/diaglist.nvim
 call plug#begin()
-
+Plug 'projekt0n/github-nvim-theme'
+Plug 'gerardbm/vim-atomic'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'folke/tokyonight.nvim'
 Plug 'AlessandroYorba/Alduin'
@@ -13,7 +17,7 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes'
 Plug 'doums/darcula'
 Plug 'sonph/onehalf'
 Plug 'sainnhe/gruvbox-material'
-Plug 'tadachs/kit.vim'
+Plug 'tadachs/kit.vim' 
 Plug 'ayu-theme/ayu-vim'
 Plug 'sainnhe/everforest'
 Plug 'catppuccin/nvim'
@@ -94,6 +98,8 @@ Plug 'voldikss/vim-floaterm'
 
 Plug 'MunifTanjim/nui.nvim'
 
+Plug 'rstacruz/vim-closer'
+
 Plug 'lewis6991/impatient.nvim'
 
 Plug 'EvanQuan/vim-executioner'
@@ -123,6 +129,27 @@ Plug 'simrat39/symbols-outline.nvim'
 Plug 'akinsho/git-conflict.nvim'
 
 Plug 'lewis6991/gitsigns.nvim'
+
+Plug 'windwp/nvim-ts-autotag'
+
+Plug 'nvim-lua/lsp-status.nvim'
+
+Plug 'ray-x/lsp_signature.nvim'
+
+Plug 'glepnir/lspsaga.nvim'
+
+Plug 'windwp/nvim-ts-autotag'
+
+Plug 'p00f/nvim-ts-rainbow'
+
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
+Plug 'SmiteshP/nvim-gps'
+
+Plug 'nvim-treesitter/playground'
+
+Plug 'onsails/lspkind.nvim'
+
 call plug#end()
 
 "replace colortheme name with * if you want all colorthemes to apply to this
@@ -142,6 +169,14 @@ augroup MyColors
 	autocmd ColorScheme * hi NonText guifg=bg
 	autocmd ColorScheme eclipse hi NonText guibg=bg
 	autocmd ColorScheme solarized8,solarized8_flat,solarized8_high,solarized8_low,github,afterglow,apprentice,eclipse hi VertSplit guibg=bg guifg=fg
+augroup END
+
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
 augroup END
 
 :colorscheme catppuccin
@@ -240,6 +275,35 @@ local view = require("nvim-tree.view")
 --require('nvim-treesitter.configs').setup{ensure_installed = {"lua", "vim", "python"}, highlight = {enable = true}}
 require('nvim-treesitter').setup()
 
+require("nvim-treesitter.configs").setup {
+  highlight = {},
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+  },
+	playground = {
+	enable = true,
+	disable = {},
+	updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+	persist_queries = false, -- Whether the query persists across vim sessions
+	keybindings = {
+		toggle_query_editor = 'o',
+		toggle_hl_groups = 'i',
+		toggle_injected_languages = 't',
+		toggle_anonymous_nodes = 'a',
+		toggle_language_display = 'I',
+		focus_language = 'f',
+		unfocus_language = 'F',
+		update = 'R',
+		goto_node = '<cr>',
+		show_help = '?',
+	},
+  },
+  autotag = {
+    enable = true,
+  },
+}
 vim.opt.list = true
 --vim.opt.listchars:append("space:⋅")
 
@@ -348,6 +412,7 @@ require("bufferline").setup{
    },
 }
 
+	local lspkind = require('lspkind')
 	local cmp = require'cmp'
 
   cmp.setup({
@@ -360,10 +425,39 @@ require("bufferline").setup{
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
-    window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
-    },
+		formatting = {
+			format = lspkind.cmp_format({
+				mode = 'symbol', -- show only symbol annotations
+				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+
+				-- The function below will be called before any actual modifications from lspkind
+				-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+				--before = function (entry, vim_item)
+				-- ...
+				--	return vim_item
+				--end
+				--vim_item.kind = lsp.presets.default[vim_item.kind]
+				--vim_item.menu = ({
+					--nvim_lsp = "[LSP]",
+					--look = "[Dict]",
+					--buffer = "[Buffer]",
+				--})[entry.source.name]
+				--vim_item.kind, vim_item.menu = vim_item.menu, vim_item.kind
+			})
+		},
+
+		textobjects = {
+			select = {
+				      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+				},
+			},
+		},
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -409,9 +503,10 @@ require("bufferline").setup{
     })
   })
 
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
+require("nvim-gps").setup()
+
+local gps = require("nvim-gps")
+
 local lualine = require('lualine')
 
 -- Color table for highlights
@@ -537,11 +632,22 @@ ins_left {
 
 ins_left {
   'filename',
+  file_status = true, path = 1,
   cond = conditions.buffer_not_empty,
   color = { fg = colors.magenta, gui = 'bold' },
 }
 
-ins_left { 'location' }
+ins_left {
+	function()
+		if gps.is_available() then
+			return gps.get_location()
+		else
+			return ''
+		end
+	end,
+	}
+
+ins_left {'location'}
 
 ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 
@@ -621,13 +727,6 @@ ins_right {
   cond = conditions.hide_in_width,
 }
 
-ins_right {
-  function()
-    return '▊'
-  end,
-  color = { fg = colors.blue },
-  padding = { left = 1 },
-}
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
@@ -635,8 +734,12 @@ lualine.setup(config)
 require('lspconfig')['pyright'].setup{}
 
 require('lspconfig')['grammarly'].setup{}
-require("nvim-lsp-installer").setup {}
 require('lspconfig')['ember'].setup{}
+require('lspconfig')['clangd'].setup{}
+
+
+require("nvim-lsp-installer").setup{}
+
 
 require('alpha').setup(require'alpha.themes.dashboard'.config)
 
@@ -694,7 +797,7 @@ vim.g.symbols_outline = {
     }
 }
 
-require('cinnamon').setup()
+--require('cinnamon').setup()
 
 require('git-conflict').setup{
   default_mappings = true, -- disable buffer local mapping created by this plugin
@@ -704,6 +807,13 @@ require('git-conflict').setup{
     current = 'DiffAdd',
   }
 }
+
+--require('lsp-status').setup{}
+
+require('lsp_signature').setup{}
+
+require('nvim-ts-autotag').setup()
+
 
 EOF
 
@@ -721,8 +831,8 @@ autocmd FileType python nnoremap <buffer> <F2> :w \| :TermExec cmd=';python3 %' 
 autocmd FileType cpp nnoremap <buffer> <F2> :w \| :TermExec cmd=';g++ -o %:r % ; ./%:r' <CR>
 autocmd FileType javascript nnoremap <buffer> <F2> :w \| :TermExec cmd=';node %' <CR>
 
-tnoremap <Esc> <C-\><C-n><C-w>k
 tnoremap <C-K> <C-\><C-n><C-w>k
+tnoremap <Esc> <C-\><C-n><C-w>k
 tnoremap <C-J> <C-\><C-n><C-w>j
 tnoremap <C-H> <C-\><C-n><C-w>h
 tnoremap <C-L> <C-\><C-n><C-w>l
@@ -731,6 +841,8 @@ nnoremap <Up> <C-w>k
 nnoremap <Down> <C-w>j
 nnoremap <Left> <C-w>h
 nnoremap <Right> <C-w>l
+
+nnoremap <S-l> :TSHighlightCapturesUnderCursor <CR>
 
 vnoremap y "+y
 nnoremap y "+y
@@ -748,7 +860,19 @@ map <F6> :ToggleTerm <CR>
 map <F7> :TagbarToggle <CR>
 map <F9> :lua require('gitsigns').detach() <CR>
 map <F10> :lua require('gitsigns').setup() <CR>
+map <F12> :TSPlaygroundToggle <CR>
 
+nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
+
+nnoremap <silent><leader>ca :Lspsaga code_action<CR>
+vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
 
 map <F8> :MinimapToggle <CR>
 
+"func! NvimGps() abort
+"    return luaeval("require'nvim-gps'.is_available()") ?
+"         \ luaeval("require'nvim-gps'.get_location()") : ''
+"endf
+
+"set statusline+=%{NvimGps()}
