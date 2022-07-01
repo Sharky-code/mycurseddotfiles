@@ -763,10 +763,16 @@ require('cokeline').setup({
     fg = function(buffer)
       return
         buffer.is_focused
-        and get_hex('Normal', 'fg')
-         or get_hex('Comment', 'fg')
+        --and get_hex('Normal', 'fg') or get_hex('Comment', 'fg')
+        and get_hex('Normal', 'bg') or get_hex('Comment', 'bg')
     end,
-    bg = 'NONE',
+    bg = function(buffer)
+      return
+      buffer.is_focused
+      and get_hex('Normal', 'fg')
+      or get_hex('ColorColumn', 'bg')
+    end
+    --bg = 'NONE',
   },
 
   sidebar = {
