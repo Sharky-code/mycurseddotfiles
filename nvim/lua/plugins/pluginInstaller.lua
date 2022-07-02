@@ -1,4 +1,6 @@
 require('packer').startup(function()
+	use 'shaunsingh/moonlight.nvim'
+	use 'shaunsingh/solarized.nvim'
 	use 'savq/melange'
 	use 'bluz71/vim-moonfly-colors'
 	use 'EdenEast/nightfox.nvim' 
@@ -110,4 +112,6 @@ require('packer').startup(function()
 	use "folke/which-key.nvim"
 
 	use "SmiteshP/nvim-navic"
+
+	use "akinsho/bufferline.nvim"
 end)

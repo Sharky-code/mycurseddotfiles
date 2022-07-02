@@ -38,6 +38,10 @@ hi DiagnosticSign guibg=bg
 hi DiagnosticWarn guibg=bg
 ]]
 
+-- vim.cmd[[
+-- let asyncomplete_auto_completeopt = 0
+-- set completeopt=menuone,noinsert,noselect,preview
+-- ]]
 
 vim.cmd("let g:move_key_modifier = 'C'")
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }

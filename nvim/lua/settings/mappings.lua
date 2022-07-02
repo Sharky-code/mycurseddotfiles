@@ -1,7 +1,7 @@
 local nest = require('nest')
 nest.applyKeymaps {
 	{"<F1>", ":HopAnywhere <CR>"},
-	{"<F2>", ":Gitsigns toggle_signs <CR>"},
+	{"<F1><F2>", ":Gitsigns toggle_signs <CR>"},
 	{"<F4>", ":Telescope <CR>"},
 	{"<F5>", ":NvimTreeToggle <CR>"},
 	{"<F6>", ":ToggleTerm <CR>"},
@@ -18,7 +18,7 @@ nest.applyKeymaps {
 		{"<Tab>", "za"},
 		{"<Backspace>", "zc"},
 
-		{"L", ":lua vim.lsp.buf.hover() <CR>"},
+		-- {"L", ":lua vim.lsp.buf.hover() <CR>"},
 	},
 
 	{mode = "v", {"y", "\"+y"} },
