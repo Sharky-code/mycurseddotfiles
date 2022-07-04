@@ -1,4 +1,7 @@
 require('packer').startup(function()
+	use "mangeshrex/everblush.vim" 
+	use "rafamadriz/neon"
+	use 'frenzyexists/aquarium-vim'
 	use 'shaunsingh/moonlight.nvim'
 	use 'shaunsingh/solarized.nvim'
 	use 'savq/melange'
@@ -68,14 +71,23 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
+	use "kylechui/nvim-surround"
 
 	use 'onsails/lspkind.nvim'
 	use 'ray-x/lsp_signature.nvim'
 	use "lukas-reineke/lsp-format.nvim"
 	use 'nvim-lua/lsp-status.nvim'
+	--use 'folke/lsp-colors.nvim'
+	--use 'kosayoda/nvim-lightbulb'
+	--use "smjonas/inc-rename.nvim"
+	-- use 'jubnzv/virtual-types.nvim'
+	--
+	-- 'ray-x/navigator.lua'
+	-- 'ray-x/guihua.lua'
 
 	use 'neovim/nvim-lspconfig'
 	use 'williamboman/nvim-lsp-installer'
+	use 'folke/trouble.nvim'
 
 	use "windwp/nvim-autopairs"
 
@@ -94,6 +106,9 @@ require('packer').startup(function()
 	use 'lewis6991/impatient.nvim'
 
 	use 'norcalli/nvim-colorizer.lua'
+	use 'folke/twilight.nvim'
+	use 'xiyaowong/nvim-transparent'
+	use 'rktjmp/lush.nvim'
 
 	use 'kevinhwang91/nvim-ufo'
 	use 'kevinhwang91/promise-async'
@@ -119,5 +134,7 @@ require('packer').startup(function()
 
 	use "akinsho/bufferline.nvim"
 
-	use 'nvim-lualine/lualine.nvim'
+	use 'xiyaowong/link-visitor.nvim'
+
+	use 'abecodes/tabout.nvim'
 end)

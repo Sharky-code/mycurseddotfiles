@@ -8,6 +8,11 @@ if not ok then
 	return
 end
 
+local nvimsurroundok, nvimsurround = pcall(require, "nvim-surround")
+if not nvimsurroundok then
+	return
+end
+
 require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
@@ -65,6 +70,10 @@ for browhatt = 1, #lspStuff do
     end,
     opts,
 		capabilities = capabilities,
+
     }
 end
 
+--trouble.setup{}
+--lsp_colors.setup{}
+nvimsurround.setup{}

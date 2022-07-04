@@ -7,7 +7,7 @@
 --	Able to update it every time i change color theme and have auto color stuff
 -- for some reason the statusline color variable doesn't update so do that and you will be able to have the statusline change color when you change color scheme
 
--- local M = {}
+local M = {}
 
 local ok, feline = pcall(require, 'feline')
 if not ok then
@@ -113,43 +113,319 @@ local function brightness_change(rgb_color, gamma)
 end
 
 -- local xyz = require('plugins.feline.color')
--- statuslinebg = xyz.color.bg
+--  = xyz.color.bg
 
-local statusline = {}
-local list = vim.api.nvim_get_hl_by_name("StatusLine", true)
-for k, v in pairs(list) do
-	local name = k == "background" and "bg" or "fg"
-	statusline[name] = string.format("#%06x", v)
-end
-local statuslinebg = statusline.bg
-
-
-local function diag_of(f, s)
-    local icon = icons[s]
-    return function()
-        local diag = f()[s]
-        return icon .. diag
-    end
-end
-
-local function diag_enable(f, s)
-    return function()
-        local diag = f()[s]
-        return diag and diag ~= 0
-    end
+function ChangeColor(hl)
+	local statusline = {}
+	local list = vim.api.nvim_get_hl_by_name(hl, true)
+	for k, v in pairs(list) do
+		local name = k == "background" and "bg" or "fg"
+		statusline[name] = string.format("#%06x", v)
+	end
+	return statusline
 end
 
 
-local function lsp_diagnostics_info()
-    return {
-        errs = lsp.get_diagnostics_count('Error'),
-        warns = lsp.get_diagnostics_count('Warning'),
-        infos = lsp.get_diagnostics_count('Information'),
-        hints = lsp.get_diagnostics_count('Hint')
-    }
+local theme = {
+	bg = ChangeColor("StatusLine").bg,
+	fg = ChangeColor("StatusLine").fg,
+	bg200 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").bg), 200)),
+	bg300 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").bg), 300)),
+}
+
+M.updateColor = function()
+	theme.bg = ChangeColor("StatusLine").bg
+	local colortheme = {
+		bg = ChangeColor("StatusLine").bg,
+		fg = ChangeColor("StatusLine").fg,
+		bg200 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").bg), 200)),
+		bg300 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").bg), 300)),
+	}
+	feline.reset_highlights()
+	feline.use_theme(colortheme)
 end
 
-local components = {
+M.theme = theme
+--M. = 
+
+
+
+-- components = {
+-- 	active = {
+-- 	{
+-- 		{
+-- 			provider = function()
+-- 				return "  " .. vi_mode_utils.get_vim_mode() .. "  "
+-- 			end,
+-- 			hl = function()
+-- 				local val = {
+-- 					name = vi_mode_utils.get_mode_highlight_name(),
+-- 					bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+-- 					fg = theme.bg,
+-- 					style = 'bold'
+-- 				}
+-- 				return val
+-- 			end,
+-- 			right_sep = {
+-- 				str ="",
+-- 				hl = function()
+-- 					local val = {
+-- 						name = vi_mode_utils.get_mode_highlight_name(),
+-- 						fg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+-- 						bg = theme.bg,
+-- 						style = 'bold'
+-- 					}
+-- 					return val
+-- 				end,
+-- 			},
+-- 		},
+-- 		{
+-- 			provider = "git_branch",
+-- 			hl = {
+-- 				bg = theme.bg,
+-- 			},
+-- 			icon = icon.git,
+-- 		left_sep = {str = "  ", hl = { bg =  theme.bg, }},
+-- 			right_sep = {str = "  ", hl = { bg =  theme.bg, }},
+-- 		},
+-- 		{
+-- 			provider = 'git_diff_added',
+-- 			hl = {
+-- 				fg = "green",
+-- 				bg = theme.bg,
+-- 			}
+-- 		},
+-- 		{
+-- 			provider = "git_diff_changed",
+-- 			hl = {
+-- 				fg = "yellow",
+-- 				bg = theme.bg
+-- 			}
+-- 		},
+-- 		{
+-- 			provider = "git_diff_removed",
+-- 			hl = {
+-- 				fg = "red",
+-- 				bg =  theme.bg
+-- 			}
+-- 		},
+-- 		{
+-- 			provider = " ",
+-- 			hl = {
+-- 				bg = theme.bg,
+-- 				fg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			}
+-- 		},
+-- 		{
+-- 			provider = 'file_info',
+-- 			hl = {
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			},
+-- 		 left_sep = {
+-- 			 str = "█",
+-- 			 hl = {
+-- 				bg = theme.bg,
+-- 				fg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			 }
+-- 		 },
+-- 		 right_sep = {
+-- 			 str = " ",
+-- 			 hl = {
+-- 				fg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			 }
+-- 		 },
+-- 			-- right_sep = "",
+-- 		type = 'relative',
+--
+-- 		},
+-- 		-- {
+-- 		-- 	provider = ' │ ',
+-- 		-- 	hl = {
+-- 		-- 		bg = rgb_num2str(brightness_change(rgb_str2num(color.bg), 200)),
+-- 		-- 		fg = rgb_num2str(brightness_change(rgb_str2num(color.fg), 200)),
+-- 		-- 	}
+-- 		-- },
+-- 		{
+-- 			provider = 'file_type',
+-- 			hl = {
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			},
+-- 			right_sep = {
+-- 				str = "█",
+-- 				hl = {
+-- 					bg =  theme.bg,
+--
+-- 				fg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 				}
+-- 			},
+--
+-- 		},
+--
+-- 		{
+-- 			provider = 'lsp_client_names',
+-- 			icon = icon.lsp,
+-- 			hl = {
+-- 				fg = "orange",
+-- 				bg = theme.bg,
+-- 			},
+-- 			left_sep = {str = ' ', hl = {bg =  theme.bg}},
+-- 			right_sep = "",
+-- 		},
+-- 		{
+-- 			provider = function()
+-- 				if navic.is_available() then
+-- 					return navic.get_location()
+-- 				else
+-- 					return ""
+-- 				end
+-- 			end,
+-- 			left_sep = { str = " ", hl = {bg= theme.bg }},
+-- 			right_sep = { str = " ", hl = {bg= theme.bg}},
+-- 			hl = {
+-- 				fg = "yellow",
+-- 				bg = theme.bg
+-- 			}
+-- 		}
+-- 	},
+--
+-- 	{
+-- 	},
+--
+-- 	{
+-- 		{
+-- 			provider = 'file_encoding',
+-- 			hl = {
+-- 				bg = theme.bg300,
+-- 			},
+-- 			left_sep = {
+-- 				str = "█",
+-- 				hl = {
+-- 					fg = theme.bg300,
+--
+-- 					bg =  theme.bg
+-- 				}
+-- 			},
+-- 			right_sep = {
+-- 				str = " ",
+-- 				hl = {
+-- 					bg = theme.bg300,
+--
+-- 				}
+-- 			}
+-- 		},
+--
+-- 		{
+-- 			provider = function()
+-- 				return file_osinfo()
+-- 			end,
+-- 			hl = {
+-- 				bg = theme.bg300,
+--
+-- 			},
+-- 			right_sep = {
+-- 				str = " ",
+-- 				hl = {
+-- 					bg = theme.bg300,
+--
+-- 				}
+-- 			},
+-- 		},
+-- 		{
+-- 			provider = function()
+-- 				return tostring(#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT}))
+-- 			end,
+-- 			icon = icon.hints,
+-- 			hl = {
+-- 				fg = "yellow",
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+--
+-- 			},
+-- 			left_sep = {
+-- 				str = "█",
+-- 				hl = {
+-- 					bg = theme.bg300,
+-- 					fg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+--
+-- 				},
+-- 			},
+-- 		},
+-- 		{
+-- 			provider = function()
+-- 				return tostring(#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN}))
+-- 			end,
+-- 			icon = icon.warns,
+-- 			hl = {
+-- 				fg = "orange",
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+--
+-- 			},
+-- 			left_sep = {
+-- 				str = " ",
+-- 				hl = {
+-- 					bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 				}
+-- 			},
+-- 			right_sep = {
+-- 				str = " ",
+-- 				hl = {
+-- 					bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 				}
+-- 			}
+-- 		},
+-- 		{
+-- 			provider = function()
+-- 				return tostring(#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }))
+-- 			end,
+-- 			icon = icon.errs,
+-- 			hl = {
+-- 				fg = "red",
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			},
+-- 			--left_sep = "█",
+-- 			right_sep = "",
+-- 		},
+-- 		{
+-- 			provider = 'position',
+-- 			hl = {
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			},
+-- 			left_sep = {
+-- 				str = "  ",
+-- 				hl = {
+-- 					bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 				}
+-- 			},
+-- 			right_sep = "██",
+-- 		},
+-- 		{
+-- 			provider = 'line_percentage',
+-- 			hl = {
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			},
+-- 			right_sep = "██",
+-- 		},
+-- 		{
+-- 			provider = 'scroll_bar',
+-- 			hl = {
+-- 				bg = rgb_num2str(brightness_change(rgb_str2num(theme.bg), 200)),
+-- 			},
+-- 		}
+-- 	},
+--
+-- 	},
+-- 	inactive = {
+-- 	{
+-- 		{
+-- 			provider = "file_info",
+-- 		}
+-- 	},
+-- 	{},
+-- 	{},
+-- }
+-- }
+-- M.components = components
+components = {
 	active = {
 	{
 		{
@@ -160,7 +436,7 @@ local components = {
 				local val = {
 					name = vi_mode_utils.get_mode_highlight_name(),
 					bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
-					fg = statuslinebg,
+					fg = theme.bg,
 					style = 'bold'
 				}
 				return val
@@ -171,7 +447,7 @@ local components = {
 					local val = {
 						name = vi_mode_utils.get_mode_highlight_name(),
 						fg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
-						bg = statuslinebg,
+						bg = 'bg',
 						style = 'bold'
 					}
 					return val
@@ -181,57 +457,57 @@ local components = {
 		{
 			provider = "git_branch",
 			hl = {
-				bg = statuslinebg,
+				bg = "bg",
 			},
 			icon = icon.git,
-		left_sep = {str = "  ", hl = { bg = statuslinebg , }},
-			right_sep = {str = "  ", hl = { bg = statuslinebg , }},
+		left_sep = {str = "  ", hl = { bg =  "bg", }},
+			right_sep = {str = "  ", hl = { bg =  "bg", }},
 		},
 		{
 			provider = 'git_diff_added',
 			hl = {
 				fg = "green",
-				bg = statuslinebg,
+				bg = "bg"
 			}
 		},
 		{
 			provider = "git_diff_changed",
 			hl = {
 				fg = "yellow",
-				bg = statuslinebg 
+				bg = "bg"
 			}
 		},
 		{
 			provider = "git_diff_removed",
 			hl = {
 				fg = "red",
-				bg = statuslinebg 
+				bg = "bg"
 			}
 		},
 		{
 			provider = " ",
 			hl = {
-				bg = statuslinebg,
-				fg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg), 200)),
+				bg = "bg",
+				fg = "bg200"
 			}
 		},
 		{
 			provider = 'file_info',
 			hl = {
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg), 200)),
+				bg = "bg200"
 			},
 		 left_sep = {
 			 str = "█",
 			 hl = {
-				bg = statuslinebg,
-				fg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg), 200)),
+				 bg = "bg",
+				fg = "bg200",
 			 }
 		 },
 		 right_sep = {
 			 str = " ",
 			 hl = {
-				fg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg), 200)),
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg), 200)),
+				 fg = "bg200",
+				 bg = "bg200",
 			 }
 		 },
 			-- right_sep = "",
@@ -248,14 +524,14 @@ local components = {
 		{
 			provider = 'file_type',
 			hl = {
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+				bg = "bg200"
 			},
 			right_sep = {
 				str = "█",
 				hl = {
-					bg = statuslinebg ,
+					bg = "bg",
 
-				fg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+					fg = "bg200"
 				}
 			},
 
@@ -266,9 +542,9 @@ local components = {
 			icon = icon.lsp,
 			hl = {
 				fg = "orange",
-				bg = statuslinebg,
+				bg = "bg"
 			},
-			left_sep = {str = ' ', hl = {bg = statuslinebg }},
+			left_sep = {str = ' ', hl = {bg = 'bg' }},
 			right_sep = "",
 		},
 		{
@@ -279,11 +555,11 @@ local components = {
 					return ""
 				end
 			end,
-			left_sep = { str = " ", hl = {bg=statuslinebg }},
-			right_sep = { str = " ", hl = {bg=statuslinebg }},
+			left_sep = { str = " ", hl = {bg= "bg" }},
+			right_sep = { str = " ", hl = {bg= "bg"}},
 			hl = {
 				fg = "yellow",
-				bg = statuslinebg 
+				bg = "bg"
 			}
 		}
 	},
@@ -295,21 +571,19 @@ local components = {
 		{
 			provider = 'file_encoding',
 			hl = {
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 300)),
+				bg = "bg300"
 			},
 			left_sep = {
 				str = "█",
 				hl = {
-					fg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 300)),
-
-					bg = statuslinebg 
+					fg = "bg300",
+					bg = "bg"
 				}
 			},
 			right_sep = {
 				str = " ",
 				hl = {
-					bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 300)),
-
+					bg = "bg300"
 				}
 			}
 		},
@@ -319,14 +593,12 @@ local components = {
 				return file_osinfo()
 			end,
 			hl = {
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 300)),
-
+				bg = "bg300"
 			},
 			right_sep = {
 				str = " ",
 				hl = {
-					bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 300)),
-
+					bg = "bg300"
 				}
 			},
 		},
@@ -337,14 +609,14 @@ local components = {
 			icon = icon.hints,
 			hl = {
 				fg = "yellow",
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+				bg = "bg200"
 
 			},
 			left_sep = {
 				str = "█",
 				hl = {
-					bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 300)),
-					fg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+					bg = "bg300",
+					fg = "bg200",
 
 				},
 			},
@@ -356,19 +628,19 @@ local components = {
 			icon = icon.warns,
 			hl = {
 				fg = "orange",
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+				bg = "bg200"
 
 			},
 			left_sep = {
 				str = " ",
 				hl = {
-					bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+					bg = "bg200"
 				}
 			},
 			right_sep = {
 				str = " ",
 				hl = {
-					bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+					bg = "bg200"
 				}
 			}
 		},
@@ -379,7 +651,7 @@ local components = {
 			icon = icon.errs,
 			hl = {
 				fg = "red",
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+				bg = "bg200",
 			},
 			--left_sep = "█",
 			right_sep = "",
@@ -387,12 +659,12 @@ local components = {
 		{
 			provider = 'position',
 			hl = {
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+				bg = "bg200",
 			},
 			left_sep = {
 				str = "  ",
 				hl = {
-					bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+					bg = "bg200",
 				}
 			},
 			right_sep = "██",
@@ -400,14 +672,14 @@ local components = {
 		{
 			provider = 'line_percentage',
 			hl = {
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+				bg = "bg200",
 			},
 			right_sep = "██",
 		},
 		{
 			provider = 'scroll_bar',
 			hl = {
-				bg = rgb_num2str(brightness_change(rgb_str2num(statuslinebg ), 200)),
+				bg = "bg200",
 			},
 		}
 	},
@@ -424,9 +696,7 @@ local components = {
 }
 }
 
--- M.components = components
--- M.color = color
-
 feline.setup {components = components, }
+feline.use_theme(theme)
 
--- return M
+return M

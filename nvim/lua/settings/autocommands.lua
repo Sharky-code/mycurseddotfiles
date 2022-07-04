@@ -9,6 +9,7 @@ augroup MyColors
 	autocmd ColorScheme dracula set fillchars+=vert:\│
 	autocmd ColorScheme nightfox set fillchars+=vert:\ 
 	autocmd ColorScheme * syntax on
+	au ColorScheme * lua require('plugins.feline.feline').updateColor()
 augroup END
 
 augroup CursorLine

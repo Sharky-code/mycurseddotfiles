@@ -1,35 +1,41 @@
 require('plugins.pluginInstaller')
 
+
 vim.cmd('colo catppuccin')
 
 require('settings.options')
 require('settings.mappings')
 require('settings.autocommands')
 
-require('plugins.alpha')
--- require('plugins.lualine')
-require('plugins.feline.feline')
-require('plugins.toggleTerminal')
-require('plugins.treesitter')
-require('plugins.nvimtree')
-require('plugins.cmp')
--- require('plugins.cokeline')
-require('plugins.indentblankline')
-require('plugins.lsp_signature')
-require('plugins.autopair')
-require('plugins.telescope')
-require('plugins.hop')
-require('plugins.colorizer')
-require('plugins.impatient')
-require('plugins.comment')
-require('plugins.fidget')
-require('plugins.gitsigns')
-require('plugins.betteresc')
-require('plugins.zenmode')
-require('plugins.whichkey')
-require('plugins.bufferline')
+local plugins = {
+'alpha', 
+'feline.feline', 
+'toggleTerminal', 
+'treesitter', 
+'nvimtree', 
+'cmp', 
+'indentblankline', 
+'lsp_signature', 
+'autopair', 
+'telescope', 
+'hop', 
+'colorizer', 
+'impatient', 
+'comment', 
+'fidget', 
+'gitsigns', 
+'betteresc', 
+'zenmode', 
+'whichkey', 
+'bufferline', 
+'color', 
+'other'
+}
 
-require('plugins.lsp.configs')
+for x = 1, #plugins do
+	local y = 'plugins.' .. plugins[x]
+	require(y)
+end
 
 vim.cmd('syntax on')
 vim.cmd('Gitsigns toggle_signs')
