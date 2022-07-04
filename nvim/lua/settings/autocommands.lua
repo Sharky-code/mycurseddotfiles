@@ -8,6 +8,7 @@ augroup MyColors
 	"autocmd ColorScheme * set fillchars+=vert:\▏
 	autocmd ColorScheme dracula set fillchars+=vert:\│
 	autocmd ColorScheme nightfox set fillchars+=vert:\ 
+	autocmd ColorScheme * syntax on
 augroup END
 
 augroup CursorLine
@@ -25,4 +26,11 @@ autocmd FileType cpp nnoremap <buffer> <F2> :w \| :TermExec cmd=';g++ -o %:r % ;
 autocmd FileType javascript nnoremap <buffer> <F2> :w \| :TermExec cmd=';node %' <CR>
 autocmd FileType lua nnoremap <buffer> <F2> :w \| :TermExec cmd=';lua %' <CR>
 
+"autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+
+" augroup __lsp_document_format
+" 	autocmd!
+ 	"autocmd BufWritePre <buffer> :!echo hi
+" 	autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+" augroup END
 ]]

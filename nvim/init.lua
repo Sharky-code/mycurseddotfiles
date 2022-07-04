@@ -1,11 +1,14 @@
 require('plugins.pluginInstaller')
 
+vim.cmd('colo catppuccin')
+
 require('settings.options')
 require('settings.mappings')
 require('settings.autocommands')
 
 require('plugins.alpha')
-require('plugins.lualine')
+-- require('plugins.lualine')
+require('plugins.feline.feline')
 require('plugins.toggleTerminal')
 require('plugins.treesitter')
 require('plugins.nvimtree')
@@ -20,10 +23,13 @@ require('plugins.colorizer')
 require('plugins.impatient')
 require('plugins.comment')
 require('plugins.fidget')
--- require('plugins.gitsigns')
+require('plugins.gitsigns')
 require('plugins.betteresc')
 require('plugins.zenmode')
 require('plugins.whichkey')
 require('plugins.bufferline')
 
 require('plugins.lsp.configs')
+
+vim.cmd('syntax on')
+vim.cmd('Gitsigns toggle_signs')

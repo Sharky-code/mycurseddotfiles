@@ -8,7 +8,6 @@ if not ok then
 	return
 end
 
-
 require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
@@ -68,3 +67,4 @@ for browhatt = 1, #lspStuff do
 		capabilities = capabilities,
     }
 end
+

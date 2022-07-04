@@ -3,7 +3,7 @@ require('packer').startup(function()
 	use 'shaunsingh/solarized.nvim'
 	use 'savq/melange'
 	use 'bluz71/vim-moonfly-colors'
-	use 'EdenEast/nightfox.nvim' 
+	use 'EdenEast/nightfox.nvim'
 	use 'bluz71/vim-nightfly-guicolors'
 	use 'christianchiarulli/nvcode-color-schemes.vim'
 	use 'romgrk/doom-one.vim'
@@ -15,7 +15,7 @@ require('packer').startup(function()
 	use 'tlhr/anderson.vim'
 	use 'rmehri01/onenord.nvim'
 	use 'arcticicestudio/nord-vim'
-	use 'NLKNguyen/papercolor-theme' 
+	use 'NLKNguyen/papercolor-theme'
 	use 'doums/darcula'
 	use 'sonph/onehalf'
 	use 'sainnhe/gruvbox-material'
@@ -54,16 +54,14 @@ require('packer').startup(function()
 
 	use 'LionC/nest.nvim'
 
-	use 'nvim-lualine/lualine.nvim'
+	-- use 'nvim-lualine/lualine.nvim'
+	use 'feline-nvim/feline.nvim'
 
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'nvim-treesitter/playground'
 
 	use 'kyazdani42/nvim-tree.lua'
 	use 'kyazdani42/nvim-web-devicons'
-
-	use 'neovim/nvim-lspconfig'
-	use 'williamboman/nvim-lsp-installer'
 
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
@@ -73,6 +71,11 @@ require('packer').startup(function()
 
 	use 'onsails/lspkind.nvim'
 	use 'ray-x/lsp_signature.nvim'
+	use "lukas-reineke/lsp-format.nvim"
+	use 'nvim-lua/lsp-status.nvim'
+
+	use 'neovim/nvim-lspconfig'
+	use 'williamboman/nvim-lsp-installer'
 
 	use "windwp/nvim-autopairs"
 
@@ -81,7 +84,7 @@ require('packer').startup(function()
 	use 'akinsho/toggleterm.nvim'
 
 	use 'MunifTanjim/nui.nvim'
-	
+
 	use 'nvim-telescope/telescope.nvim'
 
 	use 'nvim-lua/plenary.nvim'
@@ -100,7 +103,8 @@ require('packer').startup(function()
 	use 'j-hui/fidget.nvim'
 
 	use 'lewis6991/gitsigns.nvim'
-	
+	use 'dinhhuy258/git.nvim'
+
 	use "max397574/better-escape.nvim"
 
 	use "folke/zen-mode.nvim"
@@ -114,4 +118,6 @@ require('packer').startup(function()
 	use "SmiteshP/nvim-navic"
 
 	use "akinsho/bufferline.nvim"
+
+	use 'nvim-lualine/lualine.nvim'
 end)

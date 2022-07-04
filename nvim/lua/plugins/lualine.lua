@@ -1,15 +1,12 @@
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
-	return
-end
+	return end
 
 local navic = require("nvim-navic")
 
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
-end
-
-local diagnostics = {
+end local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	sections = { "error", "warn" },
@@ -47,11 +44,12 @@ local objectStatus = {
 		else
 			return
 		end
-	end
-	}
+	end,
+}
+
 
 local lspStatus = {
-      -- Lsp server name .
+	-- Lsp server name .
   function()
     local msg = 'No Active Lsp'
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -87,19 +85,19 @@ lualine.setup({
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { branch, diagnostics },
+		lualine_a = { branch, diagnostics},
 		lualine_b = { mode, },
-		lualine_c = {objectStatus},
+		lualine_c = { objectStatus },
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = {spaces, 'filetype'},
+		lualine_x = { spaces, 'filetype' },
         lualine_y = { "location" },
-		lualine_z = { "progress", lspStatus},
+		lualine_z = { "progress", lspStatus },
 	},
 	inactive_sections = {
-		lualine_a = {},
+		lualine_a = { "filename", "filetype" },
 		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
+		lualine_c = {},
+		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {},
 	},

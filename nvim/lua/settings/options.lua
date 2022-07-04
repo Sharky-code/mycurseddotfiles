@@ -22,13 +22,13 @@ local options = {
 	relativenumber=true,
 	syntax='on',
 	showmode=false,
+	termguicolors=true
 }
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd('colo catppuccin')
 vim.cmd('set fillchars=vert:\\▏,eob:\\ ')
 
 vim.cmd [[
@@ -43,10 +43,11 @@ hi DiagnosticWarn guibg=bg
 -- set completeopt=menuone,noinsert,noselect,preview
 -- ]]
 
-vim.cmd("let g:move_key_modifier = 'C'")
+--vim.cmd("let g:move_key_modifier = 'C'")
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 end
+
