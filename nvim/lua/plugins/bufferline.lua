@@ -5,7 +5,7 @@ end
 
 bufferline.setup{
 	options = {
-		separator_style = "thin",
+		separator_style = "slant",
 		always_show_bufferline = true,
 		numbers = "ordinal",
 		enforce_regular_tab = true,

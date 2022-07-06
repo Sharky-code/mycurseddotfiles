@@ -13,6 +13,11 @@ if not nvimsurroundok then
 	return
 end
 
+local ook, fidget = pcall(require, "fidget")
+if not ook then
+	return
+end
+
 require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
@@ -37,9 +42,10 @@ local function lsp_keymaps()
   vim.api.nvim_buf_set_keymap(0, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
+--just copied from nvim doc lol
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 border = "rounded",
-focusable = true, --false
+focusable = true,
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
@@ -74,6 +80,22 @@ for browhatt = 1, #lspStuff do
     }
 end
 
---trouble.setup{}
---lsp_colors.setup{}
 nvimsurround.setup{}
+
+require("lsp_signature").setup{
+	floating_window = true,
+	handler_opts = {
+			border = "rounded",
+	}
+}
+
+fidget.setup {
+    text = {
+        spinner = "dots",
+        done = "",
+    },
+    window = {
+        blend = 0,
+    },
+}
+

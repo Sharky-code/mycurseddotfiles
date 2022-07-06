@@ -1,3 +1,5 @@
+-- some plugins relating to the color 
+
 local ok, _ = pcall(require, 'transparent')
 if not ok then
 	return

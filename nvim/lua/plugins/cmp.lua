@@ -15,7 +15,6 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
---   פּ ﯟ   some other good icons
 local kind_icons = {
   Text = "",
   Method = "m",
@@ -43,12 +42,11 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {
@@ -95,9 +93,7 @@ cmp.setup {
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      -- Kind icons
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
@@ -119,7 +115,6 @@ cmp.setup {
   },
   window = {
     documentation = {
-      --border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 			border = "rounded",
 			winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
     },
@@ -136,6 +131,41 @@ cmp.setup {
 
 require'cmp'.setup.cmdline('/', {
   sources = {
-    { name = 'buffer' }
+    { name = 'buffer' },
   }
 })
+
+-- just copied it from the ufo github. it looked cool enough i was satifisfied
+local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = ('  %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+					table.insert(newVirtText, chunk)
+        else
+					chunkText = truncate(chunkText, targetWidth - curWidth)
+					local hlGroup = chunk[2]
+					table.insert(newVirtText, {chunkText, hlGroup})
+					chunkWidth = vim.fn.strdisplaywidth(chunkText)
+					if curWidth + chunkWidth < targetWidth then
+							suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+					end
+					break
+        end
+        curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, {suffix, 'MoreMsg'})
+    return newVirtText
+end
+
+require('ufo').setup({
+    fold_virt_text_handler = handler
+})
+
+local bufnr = vim.api.nvim_get_current_buf()
+require('ufo').setFoldVirtTextHandler(bufnr, handler)

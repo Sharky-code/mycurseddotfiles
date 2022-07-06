@@ -72,6 +72,7 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 	use "kylechui/nvim-surround"
+	use "hrsh7th/cmp-nvim-lsp-signature-help"
 
 	use 'onsails/lspkind.nvim'
 	use 'ray-x/lsp_signature.nvim'

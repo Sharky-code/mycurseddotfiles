@@ -1,3 +1,4 @@
+--DEPENDING ON MY MOOD I JUST CHANGE MY STATUSLINE TO SOMEONE ELSE'S LOL
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return end

@@ -28,8 +28,7 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
-vim.cmd('set fillchars=vert:\\▏,eob:\\ ')
+vim.cmd('set fillchars=vert:\\▏,eob:\\ ,horizup:\\─,vertleft:\\▏,vertright:\\▏,verthoriz:\\▏')
 
 vim.cmd [[
 hi DiagnosticError guibg=bg
@@ -38,12 +37,6 @@ hi DiagnosticSign guibg=bg
 hi DiagnosticWarn guibg=bg
 ]]
 
--- vim.cmd[[
--- let asyncomplete_auto_completeopt = 0
--- set completeopt=menuone,noinsert,noselect,preview
--- ]]
-
---vim.cmd("let g:move_key_modifier = 'C'")
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do

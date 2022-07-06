@@ -1,3 +1,12 @@
+-- vim.cmd[[
+-- augroup MyColors
+-- 	au ColorScheme * lua vim.cmd('hi DiagnosticError guibg=' .. string.format("#%06x", vim.api.nvim_get_hl_by_name("SignColumn", true).background))
+-- 	au ColorScheme * lua vim.cmd('hi DiagnosticHint guibg=' .. string.format("#%06x", vim.api.nvim_get_hl_by_name("SignColumn", true).background))
+-- 	au ColorScheme * lua vim.cmd('hi DiagnosticSign guibg=' .. string.format("#%06x", vim.api.nvim_get_hl_by_name("SignColumn", true).background))
+-- 	au ColorScheme * lua vim.cmd('hi DiagnosticWarn guibg=' .. string.format("#%06x", vim.api.nvim_get_hl_by_name("SignColumn", true).background))
+-- augroup END
+-- ]]
+
 vim.cmd [[
 augroup MyColors
 	autocmd!
@@ -9,7 +18,23 @@ augroup MyColors
 	autocmd ColorScheme dracula set fillchars+=vert:\│
 	autocmd ColorScheme nightfox set fillchars+=vert:\ 
 	autocmd ColorScheme * syntax on
-	au ColorScheme * lua require('plugins.feline.feline').updateColor()
+	au ColorScheme * lua require('plugins.feline').updateColor()
+
+	"au ColorScheme * hi! link DiagnosticError SignColumn
+	"au ColorScheme * hi DiagnosticError guifg=red
+
+	"au ColorScheme * hi! link DiagnosticHint SignColumn
+	"au ColorScheme * hi DiagnosticHint guifg=blue "cyan
+	
+	"au ColorScheme * hi! link DiagnosticSign SignColumn
+	"au ColorScheme * hi DiagnosticSign guifg=white
+	
+	"au ColorScheme * hi! link DiagnosticWarn SignColumn
+	"au ColorScheme * hi DiagnosticWarn guifg=orange
+
+
+	"idk how to link just bg to something currently so imma just 
+
 augroup END
 
 augroup CursorLine
@@ -34,4 +59,5 @@ autocmd FileType lua nnoremap <buffer> <F2> :w \| :TermExec cmd=';lua %' <CR>
  	"autocmd BufWritePre <buffer> :!echo hi
 " 	autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
 " augroup END
+
 ]]
