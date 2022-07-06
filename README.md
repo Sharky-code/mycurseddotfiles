@@ -4,3 +4,4 @@ its pretty cool
 made with reference to Nvim From Scatch  
 used along with kitty termninal  
 i use it every day   
+still need to clean up some of the code  
