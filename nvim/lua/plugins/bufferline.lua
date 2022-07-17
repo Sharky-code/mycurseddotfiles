@@ -10,15 +10,16 @@ bufferline.setup{
 		numbers = "ordinal",
 		enforce_regular_tab = true,
 		diagnostics = "nvim_lsp",
-
 		offsets = {
 			{
 				filetype = "NvimTree",
 				text = "File Explorer",
 				highlight = "Directory",
-				text_align = "left"
+				text_align = "left",
+				padding = 0
 			}
-		},
+		}, --separator_style = { "n", "m" },
+
 		diagnostics_indicator = function(count, level, diagnostics_dict, context)
 			local icon = level:match("error") and " " or " "
 			return " " .. icon .. count

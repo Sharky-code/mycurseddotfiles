@@ -35,12 +35,15 @@ hi DiagnosticError guibg=bg
 hi DiagnosticHint guibg=bg
 hi DiagnosticSign guibg=bg
 hi DiagnosticWarn guibg=bg
+hi DiagnosticInfo guibg=bg
 ]]
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+--kitty can't render emojis well apparently
+--one emoji and the entire thing is ruined and everything glitch out
 
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 end
-

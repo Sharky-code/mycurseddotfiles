@@ -37,28 +37,33 @@ local function lsp_keymaps()
   vim.api.nvim_buf_set_keymap(0, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   vim.api.nvim_buf_set_keymap(0, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   vim.api.nvim_buf_set_keymap(0, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(0, "n", "L", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   vim.api.nvim_buf_set_keymap(0, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(0, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(0, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
 --just copied from nvim doc lol
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-border = "rounded",
-focusable = true,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-	vim.lsp.handlers.signature_help, {
-		border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-				signs = true,
-    }
-)
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+-- 	vim.lsp.handlers.hover, {
+-- 		border = "rounded",
+-- 		focusable = true,
+-- 	}
+-- )
+--
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+-- 	vim.lsp.handlers.signature_help, {
+-- 		border = "rounded",
+-- 	}
+-- )
+--
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics, {
+--         virtual_text = false,
+-- 				signs = true,
+-- 				border = "rounded",
+-- 			}
+-- )
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
@@ -99,3 +104,24 @@ fidget.setup {
     },
 }
 
+vim.diagnostic.config {
+	virtual_text = false
+}
+-- creates round border for floating windows found from nvim github
+local border = {
+      {"╭", "LspFloatWinBorder"},
+      {"─", "LspFloatWinBorder"},
+      {"╮", "LspFloatWinBorder"},
+      {"│", "LspFloatWinBorder"},
+      {"╯", "LspFloatWinBorder"},
+      {"─", "LspFloatWinBorder"},
+      {"╰", "LspFloatWinBorder"},
+      {"│", "LspFloatWinBorder"},
+}
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end

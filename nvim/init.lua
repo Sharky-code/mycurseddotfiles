@@ -16,18 +16,18 @@ local plugins = {
 'treesitter',
 'nvimtree',
 'cmp',
-'indentblankline',
 'autopair',
 'telescope',
 'hop',
 'colorizer',
 'impatient',
-'gitsigns',
+'git',
 'betteresc',
 'bufferline',
 'color',
 'other',
-'lsp.configs'
+'lsp.configs',
+'indentblankline',
 }
 
 for x = 1, #plugins do

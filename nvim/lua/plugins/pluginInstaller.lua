@@ -1,4 +1,5 @@
 require('packer').startup(function()
+	use 'LunarVim/onedarker.nvim'
 	use "mangeshrex/everblush.vim" 
 	use "rafamadriz/neon"
 	use 'frenzyexists/aquarium-vim'
@@ -78,6 +79,7 @@ require('packer').startup(function()
 	use 'ray-x/lsp_signature.nvim'
 	use "lukas-reineke/lsp-format.nvim"
 	use 'nvim-lua/lsp-status.nvim'
+	use 'simrat39/symbols-outline.nvim'
 	--use 'folke/lsp-colors.nvim'
 	--use 'kosayoda/nvim-lightbulb'
 	--use "smjonas/inc-rename.nvim"

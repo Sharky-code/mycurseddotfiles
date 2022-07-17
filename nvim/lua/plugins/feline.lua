@@ -37,6 +37,7 @@ local icon = {
     lsp = ' ', git = ''
 }
 
+--didn't know about these lua nvim commands so the code below isn't mine, but i designed the statusbar :)
 local function file_osinfo()
     local os = vim.bo.fileformat:upper()
     local icon
@@ -143,7 +144,7 @@ components = {
 			hl = {
 				bg = "bg",
 			},
-			icon = icon.git,
+			icon = " ",
 		left_sep = {str = "  ", hl = { bg =  "bg", }},
 			right_sep = {str = "  ", hl = { bg =  "bg", }},
 		},

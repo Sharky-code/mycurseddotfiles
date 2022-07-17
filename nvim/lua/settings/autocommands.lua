@@ -31,6 +31,12 @@ augroup MyColors
 	
 	"au ColorScheme * hi! link DiagnosticWarn SignColumn
 	"au ColorScheme * hi DiagnosticWarn guifg=orange
+	au ColorScheme * hi DiagnosticError guibg=bg
+	au ColorScheme * hi DiagnosticHint guibg=bg
+	au ColorScheme * hi DiagnosticSign guibg=bg
+	au ColorScheme * hi DiagnosticWarn guibg=bg
+	au ColorScheme * hi DiagnosticInfo guibg=bg
+
 
 
 	"idk how to link just bg to something currently so imma just 
