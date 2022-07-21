@@ -61,7 +61,7 @@ cmp.setup {
       c = cmp.mapping.close(),
     },
     ["<CR>"] = cmp.mapping.confirm { select = true },
-    ["<Up>"] = cmp.mapping(function(fallback)
+    ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expandable() then
@@ -77,7 +77,7 @@ cmp.setup {
       "i",
       "s",
     }),
-    ["<Down>"] = cmp.mapping(function(fallback)
+    ["<Up>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then

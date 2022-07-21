@@ -77,7 +77,7 @@ local function brightness_change(rgb_color, gamma)
 end
 
 function ChangeColor(hl)
-	local statusline = {}
+	-- local statusline = {}
 	local list = vim.api.nvim_get_hl_by_name(hl, true)
 	for k, v in pairs(list) do
 		if tonumber(v, 10) then
@@ -211,9 +211,7 @@ components = {
 					fg = "bg200"
 				}
 			},
-
-		},
-
+},
 		{
 			provider = 'lsp_client_names',
 			icon = icon.lsp,

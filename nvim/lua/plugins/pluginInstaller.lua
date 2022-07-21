@@ -9,7 +9,7 @@ require('packer').startup(function()
 	use 'bluz71/vim-moonfly-colors'
 	use 'EdenEast/nightfox.nvim'
 	use 'bluz71/vim-nightfly-guicolors'
-	use 'christianchiarulli/nvcode-color-schemes.vim'
+	-- use 'christianchiarulli/nvcode-color-schemes.vim'
 	use 'romgrk/doom-one.vim'
 	use 'projekt0n/github-nvim-theme'
 	use 'gerardbm/vim-atomic'
@@ -47,6 +47,7 @@ require('packer').startup(function()
 	use 'chriskempson/base16-vim'
 	use 'Mofiqul/vscode.nvim'
 	use 'jacoborus/tender.vim'
+	use 'KeitaNakamura/neodark.vim'
 
 	use 'noib3/nvim-cokeline'
 
@@ -140,4 +141,8 @@ require('packer').startup(function()
 	use 'xiyaowong/link-visitor.nvim'
 
 	use 'abecodes/tabout.nvim'
+
+	use 'RRethy/vim-illuminate'
+	use 'p00f/nvim-ts-rainbow'
+
 end)

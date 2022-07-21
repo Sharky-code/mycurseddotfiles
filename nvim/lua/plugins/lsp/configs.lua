@@ -87,11 +87,14 @@ end
 
 nvimsurround.setup{}
 
+-- DISABLE floating_window IF YOU FIND IT A N N O Y I N G A  H  H  H   H    H 
 require("lsp_signature").setup{
 	floating_window = true,
 	handler_opts = {
 			border = "rounded",
-	}
+	},
+	hint_enable = true,
+	toggle_key = "<C-k>",
 }
 
 fidget.setup {
