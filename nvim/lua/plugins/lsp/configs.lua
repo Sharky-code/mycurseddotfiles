@@ -93,7 +93,7 @@ require("lsp_signature").setup{
 	handler_opts = {
 			border = "rounded",
 	},
-	hint_enable = true,
+	hint_enable = false,
 	toggle_key = "<C-k>",
 }
 
@@ -128,3 +128,4 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.border = opts.border or border
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
+print()

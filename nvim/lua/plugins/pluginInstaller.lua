@@ -1,6 +1,6 @@
 require('packer').startup(function()
 	use 'LunarVim/onedarker.nvim'
-	use "mangeshrex/everblush.vim" 
+	use { 'Everblush/everblush.nvim', as = 'everbblush' }
 	use "rafamadriz/neon"
 	use 'frenzyexists/aquarium-vim'
 	use 'shaunsingh/moonlight.nvim'
@@ -144,5 +144,4 @@ require('packer').startup(function()
 
 	use 'RRethy/vim-illuminate'
 	use 'p00f/nvim-ts-rainbow'
-
 end)

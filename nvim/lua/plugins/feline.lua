@@ -91,7 +91,7 @@ end
 
 local theme = {
 	bg = ChangeColor("StatusLine").background,
-	fg = ChangeColor("StatusLine").foreground,
+	fg = ChangeColor("Normal").foreground,
 	bg200 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 200)),
 	bg300 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 300)),
 }
@@ -100,7 +100,7 @@ M.updateColor = function()
 	theme.bg = ChangeColor("StatusLine").background
 	local colortheme = {
 		bg = ChangeColor("StatusLine").background,
-		fg = ChangeColor("StatusLine").foreground,
+		fg = ChangeColor("Normal").foreground,
 		bg200 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 200)),
 		bg300 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 300)),
 	}

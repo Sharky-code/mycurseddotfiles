@@ -4,7 +4,7 @@
 
 require('plugins.pluginInstaller')
 
-vim.cmd('colo catppuccin')
+vim.cmd('colo solarized8')
 
 require('settings.options')
 require('settings.mappings')
