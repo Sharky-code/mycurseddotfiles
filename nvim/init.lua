@@ -4,7 +4,7 @@
 
 require('plugins.pluginInstaller')
 
-vim.cmd('colo solarized8')
+vim.cmd('colo palenight')
 
 require('settings.options')
 require('settings.mappings')
@@ -12,6 +12,7 @@ require('settings.autocommands')
 
 
 local plugins = {
+'indentblankline',
 'alpha',
 'feline',
 'toggleTerminal',
@@ -28,7 +29,6 @@ local plugins = {
 'color',
 'other',
 'lsp.configs',
-'indentblankline',
 'treesitter',
 }
 

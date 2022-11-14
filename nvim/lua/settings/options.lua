@@ -25,8 +25,8 @@ local options = {
 	termguicolors=true
 }
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
+for k, v in pairs(options) 
+	do vim.opt[k] = v
 end
 --vim.cmd('set fillchars=vert:\\▏,eob:\\ ,horizup:\\─,vertleft:\\▏,vertright:\\▏,verthoriz:\\▏')
 vim.cmd('set fillchars=vert:\\▎,eob:\\ ,horizup:\\─,vertleft:\\▎,vertright:\\▎,verthoriz:\\▎')

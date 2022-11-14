@@ -92,25 +92,89 @@ end
 local theme = {
 	bg = ChangeColor("StatusLine").background,
 	fg = ChangeColor("Normal").foreground,
+	bg50 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 25)),
+	bg100 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 125)),
+	bg150 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 150)),
 	bg200 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 200)),
+	bg250 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 250)),
 	bg300 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 300)),
 }
+vim.api.nvim_set_hl(0, "NavicIconsFile",          {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff5050"})
+vim.api.nvim_set_hl(0, "NavicIconsModule",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#660000"})
+vim.api.nvim_set_hl(0, "NavicIconsNamespace",     {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff6600"})
+vim.api.nvim_set_hl(0, "NavicIconsPackage",       {default = true, bg = ChangeColor("StatusLine").background, fg = "#ffa366"})
+vim.api.nvim_set_hl(0, "NavicIconsClass",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#00ff00"})
+vim.api.nvim_set_hl(0, "NavicIconsMethod",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#008000"})
+vim.api.nvim_set_hl(0, "NavicIconsProperty",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff00ff"})
+vim.api.nvim_set_hl(0, "NavicIconsField",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#00ffff"})
+vim.api.nvim_set_hl(0, "NavicIconsConstructor",   {default = true, bg = ChangeColor("StatusLine").background, fg = "#660066"})
+vim.api.nvim_set_hl(0, "NavicIconsEnum",          {default = true, bg = ChangeColor("StatusLine").background, fg = "#cc66ff"})
+vim.api.nvim_set_hl(0, "NavicIconsInterface",     {default = true, bg = ChangeColor("StatusLine").background, fg = "#0000ff"})
+vim.api.nvim_set_hl(0, "NavicIconsFunction",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#0099cc"})
+vim.api.nvim_set_hl(0, "NavicIconsVariable",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff0066"})
+vim.api.nvim_set_hl(0, "NavicIconsConstant",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff99c2"})
+vim.api.nvim_set_hl(0, "NavicIconsString",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#cc9900"})
+vim.api.nvim_set_hl(0, "NavicIconsNumber",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#ccff66"})
+vim.api.nvim_set_hl(0, "NavicIconsBoolean",       {default = true, bg = ChangeColor("StatusLine").background, fg = "#0099ff"})
+vim.api.nvim_set_hl(0, "NavicIconsArray",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#009900"})
+vim.api.nvim_set_hl(0, "NavicIconsObject",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#9999ff"})
+vim.api.nvim_set_hl(0, "NavicIconsKey",           {default = true, bg = ChangeColor("StatusLine").background, fg = "#cc0099"}) 
+vim.api.nvim_set_hl(0, "NavicIconsNull",          {default = true, bg = ChangeColor("StatusLine").background, fg = "#333300"})
+vim.api.nvim_set_hl(0, "NavicIconsEnumMember",    {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff3399"})
+vim.api.nvim_set_hl(0, "NavicIconsStruct",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#000066"})
+vim.api.nvim_set_hl(0, "NavicIconsEvent",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#336600"})
+vim.api.nvim_set_hl(0, "NavicIconsOperator",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#006699"})
+vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", {default = true, bg = ChangeColor("StatusLine").background, fg = "#666699"})
+vim.api.nvim_set_hl(0, "NavicText",               {default = true, bg = ChangeColor("StatusLine").background, fg = "gray"})
+vim.api.nvim_set_hl(0, "NavicSeparator",          {default = true, bg = ChangeColor("StatusLine").background, fg = "gray"})
 
 M.updateColor = function()
 	theme.bg = ChangeColor("StatusLine").background
 	local colortheme = {
 		bg = ChangeColor("StatusLine").background,
 		fg = ChangeColor("Normal").foreground,
+		bg50 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 25)),
+		bg100 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 125)),
+		bg150 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 150)),
 		bg200 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 200)),
+		bg250 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 250)),
 		bg300 = rgb_num2str(brightness_change(rgb_str2num(ChangeColor("StatusLine").background), 300)),
 	}
+	vim.api.nvim_set_hl(0, "NavicIconsFile",          {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff5050"})
+	vim.api.nvim_set_hl(0, "NavicIconsModule",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#660000"})
+	vim.api.nvim_set_hl(0, "NavicIconsNamespace",     {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff6600"})
+	vim.api.nvim_set_hl(0, "NavicIconsPackage",       {default = true, bg = ChangeColor("StatusLine").background, fg = "#ffa366"})
+	vim.api.nvim_set_hl(0, "NavicIconsClass",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#00ff00"})
+	vim.api.nvim_set_hl(0, "NavicIconsMethod",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#008000"})
+	vim.api.nvim_set_hl(0, "NavicIconsProperty",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff00ff"})
+	vim.api.nvim_set_hl(0, "NavicIconsField",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#00ffff"})
+	vim.api.nvim_set_hl(0, "NavicIconsConstructor",   {default = true, bg = ChangeColor("StatusLine").background, fg = "#660066"})
+	vim.api.nvim_set_hl(0, "NavicIconsEnum",          {default = true, bg = ChangeColor("StatusLine").background, fg = "#cc66ff"})
+	vim.api.nvim_set_hl(0, "NavicIconsInterface",     {default = true, bg = ChangeColor("StatusLine").background, fg = "#0000ff"})
+	vim.api.nvim_set_hl(0, "NavicIconsFunction",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#0099cc"})
+	vim.api.nvim_set_hl(0, "NavicIconsVariable",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff0066"})
+	vim.api.nvim_set_hl(0, "NavicIconsConstant",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff99c2"})
+	vim.api.nvim_set_hl(0, "NavicIconsString",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#cc9900"})
+	vim.api.nvim_set_hl(0, "NavicIconsNumber",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#ccff66"})
+	vim.api.nvim_set_hl(0, "NavicIconsBoolean",       {default = true, bg = ChangeColor("StatusLine").background, fg = "#0099ff"})
+	vim.api.nvim_set_hl(0, "NavicIconsArray",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#009900"})
+	vim.api.nvim_set_hl(0, "NavicIconsObject",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#9999ff"})
+	vim.api.nvim_set_hl(0, "NavicIconsKey",           {default = true, bg = ChangeColor("StatusLine").background, fg = "#cc0099"}) 
+	vim.api.nvim_set_hl(0, "NavicIconsNull",          {default = true, bg = ChangeColor("StatusLine").background, fg = "#333300"})
+	vim.api.nvim_set_hl(0, "NavicIconsEnumMember",    {default = true, bg = ChangeColor("StatusLine").background, fg = "#ff3399"})
+	vim.api.nvim_set_hl(0, "NavicIconsStruct",        {default = true, bg = ChangeColor("StatusLine").background, fg = "#000066"})
+	vim.api.nvim_set_hl(0, "NavicIconsEvent",         {default = true, bg = ChangeColor("StatusLine").background, fg = "#336600"})
+	vim.api.nvim_set_hl(0, "NavicIconsOperator",      {default = true, bg = ChangeColor("StatusLine").background, fg = "#006699"})
+	vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", {default = true, bg = ChangeColor("StatusLine").background, fg = "#666699"})
+	vim.api.nvim_set_hl(0, "NavicText",               {default = true, bg = ChangeColor("StatusLine").background, fg = "gray"})
+	vim.api.nvim_set_hl(0, "NavicSeparator",          {default = true, bg = ChangeColor("StatusLine").background, fg = "gray"})
 	feline.reset_highlights()
 	feline.use_theme(colortheme)
 end
 
 M.theme = theme
 
-components = {
+local components = {
 	active = {
 	{
 		{
@@ -121,18 +185,65 @@ components = {
 				local val = {
 					name = vi_mode_utils.get_mode_highlight_name(),
 					bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
-					fg = theme.bg,
+					fg = "bg",
+					style = 'bold'
+				}
+				return val
+			end,
+			left_sep = {
+				str = " ",
+				hl = function ()
+					local val = {
+						name = vi_mode_utils.get_mode_highlight_name(),
+						bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+					}
+					return val
+				end
+			},
+			right_sep = {
+				str = " ",
+				hl = function ()
+					local val = {
+						name = vi_mode_utils.get_mode_highlight_name(),
+						bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+						fg = "bg",
+						style = "bold",
+					}
+					return val
+				end
+			},
+			type = 'relative',
+		},
+		{
+			provider = "file_info",
+			hl = function()
+				local val = {
+					name = vi_mode_utils.get_mode_highlight_name(),
+					bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+					fg = "bg50",
 					style = 'bold'
 				}
 				return val
 			end,
 			right_sep = {
-				str ="",
+				str ="██",
 				hl = function()
 					local val = {
 						name = vi_mode_utils.get_mode_highlight_name(),
 						fg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
-						bg = 'bg',
+						bg = 'bg250',
+						style = 'bold'
+					}
+					return val
+				end,
+			},
+			left_sep = {
+				str ="██",
+				hl = function()
+					local val = {
+						name = vi_mode_utils.get_mode_highlight_name(),
+						fg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+						bg = 'bg250',
 						style = 'bold'
 					}
 					return val
@@ -142,85 +253,71 @@ components = {
 		{
 			provider = "git_branch",
 			hl = {
-				bg = "bg",
+				bg = "bg250",
 			},
 			icon = " ",
-		left_sep = {str = "  ", hl = { bg =  "bg", }},
-			right_sep = {str = "  ", hl = { bg =  "bg", }},
+			left_sep = {str = "  ", hl = { bg =  "bg250", }},
+			right_sep = {str = " ", hl = { bg =  "bg250", }},
 		},
 		{
 			provider = 'git_diff_added',
 			hl = {
 				fg = "green",
-				bg = "bg"
+				bg = "bg250"
 			}
 		},
 		{
 			provider = "git_diff_changed",
 			hl = {
 				fg = "yellow",
-				bg = "bg"
+				bg = "bg250"
 			}
 		},
 		{
 			provider = "git_diff_removed",
 			hl = {
 				fg = "red",
-				bg = "bg"
+				bg = "bg250"
 			}
 		},
 		{
 			provider = " ",
 			hl = {
-				bg = "bg",
+				bg = "bg250",
 				fg = "bg200"
-			}
-		},
-		{
-			provider = 'file_info',
-			hl = {
-				bg = "bg200"
 			},
-		 left_sep = {
-			 str = "█",
-			 hl = {
-				 bg = "bg",
-				fg = "bg200",
-			 }
-		 },
-		 right_sep = {
-			 str = " ",
-			 hl = {
-				 fg = "bg200",
-				 bg = "bg200",
-			 }
-		 },
-		type = 'relative',
-
+			right_sep = {
+				str = " ",
+				hl = {
+					bg = "bg200",
+					fg = "bg250"
+				}
+			}
 		},
 		{
 			provider = 'file_type',
 			hl = {
-				bg = "bg200"
+				bg = "bg200",
+				style = "bold"
 			},
 			right_sep = {
-				str = "█",
+				str = "█",
 				hl = {
-					bg = "bg",
+					bg = "bg200",
 
 					fg = "bg200"
 				}
 			},
-},
+		},
 		{
 			provider = 'lsp_client_names',
 			icon = icon.lsp,
 			hl = {
 				fg = "orange",
-				bg = "bg"
+				bg = "bg200"
 			},
-			left_sep = {str = ' ', hl = {bg = 'bg' }},
-			right_sep = "",
+			left_sep = {str = ' ', hl = {bg = 'bg200' }},
+			right_sep = {str = '█', hl = {bg = 'bg', fg = 'bg200'}},
 		},
 		{
 			provider = function()
@@ -232,10 +329,7 @@ components = {
 			end,
 			left_sep = { str = " ", hl = {bg= "bg" }},
 			right_sep = { str = " ", hl = {bg= "bg"}},
-			hl = {
-				fg = "yellow",
-				bg = "bg"
-			}
+			hl = {bg="bg"}
 		}
 	},
 
@@ -246,19 +340,20 @@ components = {
 		{
 			provider = 'file_encoding',
 			hl = {
-				bg = "bg300"
+				bg = "bg100",
+				fg = "bg300"
 			},
 			left_sep = {
-				str = "█",
+				str = "█",
 				hl = {
-					fg = "bg300",
+					fg = "bg100",
 					bg = "bg"
 				}
 			},
 			right_sep = {
 				str = " ",
 				hl = {
-					bg = "bg300"
+					bg = "bg100"
 				}
 			}
 		},
@@ -268,12 +363,13 @@ components = {
 				return file_osinfo()
 			end,
 			hl = {
-				bg = "bg300"
+				bg = "bg100",
+				fg = "bg300"
 			},
 			right_sep = {
 				str = " ",
 				hl = {
-					bg = "bg300"
+					bg = "bg100"
 				}
 			},
 		},
@@ -288,9 +384,9 @@ components = {
 
 			},
 			left_sep = {
-				str = "█",
+				str = "█",
 				hl = {
-					bg = "bg300",
+					bg = "bg100",
 					fg = "bg200",
 
 				},
@@ -328,36 +424,112 @@ components = {
 				fg = "red",
 				bg = "bg200",
 			},
-			--left_sep = "█",
-			right_sep = "",
+			left_sep = "",
+			right_sep = {str = "█", hl = {fg = "bg200", bg = "bg"}},
 		},
+		--[[
+		--    left = "",
+    right = " ",
+  },
+
+  round = {
+    left = "",
+    right = "",
+  },
+
+  block = {
+    left = "█",
+    right = "█",
+  },
+
+  arrow = {
+    left = "",
+    right = "",
+		--]]
 		{
 			provider = 'position',
 			hl = {
-				bg = "bg200",
+				bg = "bg",
+				fg = "bg250",
+				style = "bold"
 			},
-			left_sep = {
-				str = "  ",
+			left_sep = {str = "   ", hl = {fg = "bg", bg = "bg"}},
+			right_sep = {str = "   ", hl = {fg = "bg", bg = "bg"}},
+		},
+		{
+			provider = function ()
+				return 'TABSTOP: ' .. tostring(vim.o.tabstop)
+			end,
+			hl = {
+				bg = "bg",
+				fg = "bg250",
+				style = "bold"
+			},
+			right_sep = {
+				str = "   ",
 				hl = {
-					bg = "bg200",
-				}
-			},
-			right_sep = "██",
+					bg = "bg",
+				},
+			}
 		},
 		{
 			provider = 'line_percentage',
-			hl = {
-				bg = "bg200",
+			hl = function()
+					local val = {
+						vi_mode_utils.get_mode_highlight_name(),
+						bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+						fg = "bg"
+					}
+					return val
+			end,
+			left_sep = {str = "█",
+			hl = function()
+					local val = {
+						vi_mode_utils.get_mode_highlight_name(),
+						fg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+						bg = "bg"
+					}
+					return val
+				end
 			},
 			right_sep = "██",
 		},
 		{
 			provider = 'scroll_bar',
-			hl = {
-				bg = "bg200",
+			hl = function()
+				local val = {
+					vi_mode_utils.get_mode_highlight_name(),
+					bg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+					fg = "bg300"
+				}
+				return val
+			end,
 			},
-		}
-	},
+			right_sep = {
+				str = "",
+				hl = function()
+						local val = {
+							vi_mode_utils.get_mode_highlight_name(),
+							fg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+							bg = "bg"
+						}
+						return val
+					end
+				}
+		},
+		-- {
+		-- 	provider = '█',
+		-- 	hl = {
+		-- 		hl = function()
+		-- 				local val = {
+		-- 					vi_mode_utils.get_mode_highlight_name(),
+		-- 					fg = vi_mode_colors[vi_mode_utils.get_vim_mode()],
+		-- 				}
+		-- 				return val
+		-- 			end
+		-- 	}
+		--
+		-- }
 
 	},
 	inactive = {

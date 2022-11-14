@@ -5,6 +5,9 @@ nest.applyKeymaps {
 	{"<F4>", ":Telescope <CR>"},
 	{"<F5>", ":NvimTreeToggle <CR>"},
 	{"<F6>", ":ToggleTerm <CR>"},
+	--{"<F7>", ":w | :TermExec cmd=\';python3 %\' <CR>"},
+	{"<F1>", "<cmd>lua require('settings.runfile').hi(vim.fn.expand('%'), vim.fn.expand('%:r')) <CR>"},
+
 
 	{mode = "n",
 		{"y", "\"+y"},
@@ -15,11 +18,12 @@ nest.applyKeymaps {
 		{"<Down>", "<C-w>j"},
 		{"<Left>", "<C-w>h"},
 		{"<Right>", "<C-w>l"},
-		{"<Tab>", "za"},
-		{"<Backspace>", "zc"},
+		-- {"<Tab>", "za"},
+		-- {"<Backspace>", "zc"},
 		{"<Leader>o", "o<Esc>"},
 		{"<Leader>O", "O<Esc>"},
-		{"<Leader>J", "kJ"}
+		{"<Leader>J", "kJ"},
+		{"L", "<cmd>lua vim.diagnostic.open_float()<CR>"}
 
 		-- {"L", ":lua vim.lsp.buf.hover() <CR>"},
 	},

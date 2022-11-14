@@ -1,4 +1,5 @@
 require('packer').startup(function()
+	use 'rose-pine/neovim'
 	use 'LunarVim/onedarker.nvim'
 	use { 'Everblush/everblush.nvim', as = 'everbblush' }
 	use "rafamadriz/neon"
@@ -9,7 +10,7 @@ require('packer').startup(function()
 	use 'bluz71/vim-moonfly-colors'
 	use 'EdenEast/nightfox.nvim'
 	use 'bluz71/vim-nightfly-guicolors'
-	-- use 'christianchiarulli/nvcode-color-schemes.vim'
+	use 'christianchiarulli/nvcode-color-schemes.vim'
 	use 'romgrk/doom-one.vim'
 	use 'projekt0n/github-nvim-theme'
 	use 'gerardbm/vim-atomic'
@@ -142,6 +143,10 @@ require('packer').startup(function()
 
 	use 'abecodes/tabout.nvim'
 
-	use 'RRethy/vim-illuminate'
+	-- use 'RRethy/vim-illuminate'
 	use 'p00f/nvim-ts-rainbow'
+
+	use 'EvanQuan/vim-executioner' 
+
+	use 'rcarriga/nvim-notify'
 end)

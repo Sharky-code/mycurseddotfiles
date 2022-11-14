@@ -1,6 +1,5 @@
 local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-	return
+if not status_ok then return
 end
 
 local ok, navic = pcall(require, "nvim-navic")
@@ -44,26 +43,27 @@ local function lsp_keymaps()
 end
 
 --just copied from nvim doc lol
--- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
--- 	vim.lsp.handlers.hover, {
--- 		border = "rounded",
--- 		focusable = true,
--- 	}
--- )
---
--- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
--- 	vim.lsp.handlers.signature_help, {
--- 		border = "rounded",
--- 	}
--- )
---
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---     vim.lsp.diagnostic.on_publish_diagnostics, {
---         virtual_text = false,
--- 				signs = true,
--- 				border = "rounded",
--- 			}
--- )
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+	vim.lsp.handlers.hover, {
+		border = "rounded",
+		focusable = true,
+	}
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+	vim.lsp.handlers.signature_help, {
+		border = "rounded",
+	}
+)
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+				signs = true,
+				border = "rounded",
+				underline = false,
+			}
+)
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {

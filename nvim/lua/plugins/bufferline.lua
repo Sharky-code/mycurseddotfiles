@@ -18,9 +18,9 @@ bufferline.setup{
 		separator_style = {"", ""},
 		always_show_bufferline = true,
 		numbers = "ordinal",
-		indicator_icon = '▎', --using this because for some colorschemes that have the NvimTreeVertSplit visible, it matches the style.
+		indicator= {style="icon", icon='▎'}, --using this because for some colorschemes that have the NvimTreeVertSplit visible, it matches the style.
 		--it also doesn't look weird for colorschemes without NvimTreeVertSplit
-		show_buffer_close_icons = false,
+		show_buffer_close_icons = true,
 		show_close_icon = false,
 		enforce_regular_tab = true,
 		diagnostics = "nvim_lsp",
