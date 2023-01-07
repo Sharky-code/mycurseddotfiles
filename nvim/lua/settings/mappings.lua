@@ -18,12 +18,14 @@ nest.applyKeymaps {
 		{"<Down>", "<C-w>j"},
 		{"<Left>", "<C-w>h"},
 		{"<Right>", "<C-w>l"},
-		-- {"<Tab>", "za"},
-		-- {"<Backspace>", "zc"},
+		{"<Tab>", "za"},
+		{"<Backspace>", "zc"},
 		{"<Leader>o", "o<Esc>"},
 		{"<Leader>O", "O<Esc>"},
 		{"<Leader>J", "kJ"},
-		{"L", "<cmd>lua vim.diagnostic.open_float()<CR>"}
+		{"L", "<cmd>lua vim.diagnostic.open_float()<CR>"},
+		{"<Leader>t", ":Trouble <CR>"},
+		
 
 		-- {"L", ":lua vim.lsp.buf.hover() <CR>"},
 	},

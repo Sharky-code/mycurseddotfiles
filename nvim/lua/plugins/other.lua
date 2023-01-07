@@ -1,21 +1,19 @@
+-- btw i think the thing is called wrap
+
 -- https://github.com/yamatsum/nvim-cursorline
 -- https://github.com/RRethy/vim-illuminate
 -- https://github.com/rlane/pounce.nvim
-require('link-visitor').setup{}
+require('link-visitor').setup{
 --require('tabout').setup{} -- doesn't work :(
---https://github.com/CRAG666/code_runner.nvim --i already have my autocommands lmaooo
-require('zen-mode').setup{
+--https://github.com/CRAG666/code_runner.nvim --i already have my autocommands lmaooo require('zen-mode').setup{
 	window = {
 		options = {
 			signcolumn = "no",
 			number = true,
-			relativenumber = true,
-			list = false
-		},
-	},
+			relativenumber = true, list = false }, },
 	plugins = {
 		twilight = {
-			enabled = false --i hate twilight
+			enabled = false, --i hate twilight
 		}
 	}
 }
@@ -58,13 +56,12 @@ require("nvim-navic").setup{
 		separator = "  ",
 		depth_limit = 0,
 		depth_limit_indicator = "..",
-}
+ }
 -- vim.api.nvim_set_hl(0, "NavicIconsFile",          {default = true, fg = "#ff5050"})
 -- vim.api.nvim_set_hl(0, "NavicIconsModule",        {default = true, fg = "#660000"})
 -- vim.api.nvim_set_hl(0, "NavicIconsNamespace",     {default = true, fg = "#ff6600"})
 -- vim.api.nvim_set_hl(0, "NavicIconsPackage",       {default = true, fg = "#ffa366"})
--- vim.api.nvim_set_hl(0, "NavicIconsClass",         {default = true, fg = "#00ff00"})
--- vim.api.nvim_set_hl(0, "NavicIconsMethod",        {default = true, fg = "#008000"})
+-- vim.api.nvim_set_hl(0, "NavicIconsClass",         {default = true, fg = "#00ff00"}) vim.api.nvim_set_hl(0, "NavicIconsMethod",        {default = true, fg = "#008000"})
 -- vim.api.nvim_set_hl(0, "NavicIconsProperty",      {default = true, fg = "#ff00ff"})
 -- vim.api.nvim_set_hl(0, "NavicIconsField",         {default = true, fg = "#00ffff"})
 -- vim.api.nvim_set_hl(0, "NavicIconsConstructor",   {default = true, fg = "#660066"})
@@ -88,6 +85,32 @@ require("nvim-navic").setup{
 -- vim.api.nvim_set_hl(0, "NavicText",               {default = true, fg = "gray"})
 -- vim.api.nvim_set_hl(0, "NavicSeparator",          {default = true, fg = "gray"})
 
-require("symbols-outline").setup()
+require("symbols-outline").setup{
+	auto_close = true,
+	show_guides = false,
+	highlight_hovered_item = false,
+	relative_width = false,
+	width = 15,
+}
 --vim.notify = require("notify")
 
+require("trouble").setup {
+}
+
+-- require('nvim-dap').setup{}
+--
+
+require("dap-python").setup("python", {})
+
+require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+
+require('aerial').setup({
+  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', {buffer = bufnr})
+    vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', {buffer = bufnr})
+  end
+})
+-- You probably also want to set a keymap to toggle aerial
+vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')

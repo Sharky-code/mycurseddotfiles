@@ -3,7 +3,7 @@ local options = {
   signcolumn='yes',
 	foldmethod='expr',
 	foldexpr='nvim_treesitter#foldexpr()',
-	laststatus = 3,
+	laststatus = 2, --3 if you don't like the stupid nvim tree in the way 
 	nocompatible,
 	swapfile=false,
 	number=true,
@@ -52,3 +52,9 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 end
+
+-- -- overlength character limit
+-- vim.cmd [[
+-- highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+-- match OverLength /\%81v.\+/
+-- ]]

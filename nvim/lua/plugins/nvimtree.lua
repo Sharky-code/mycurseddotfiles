@@ -40,3 +40,5 @@ a.setup {
 		update_cwd = true,
 	},
 }
+
+require('nvim-tree.view').View.winopts.signcolumn = 'no'

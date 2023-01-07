@@ -4,7 +4,7 @@
 
 require('plugins.pluginInstaller')
 
-vim.cmd('colo palenight')
+vim.cmd('colo nightfox')
 
 require('settings.options')
 require('settings.mappings')
@@ -14,7 +14,7 @@ require('settings.autocommands')
 local plugins = {
 'indentblankline',
 'alpha',
-'feline',
+-- 'lualine',
 'toggleTerminal',
 'nvimtree',
 'cmp',
@@ -30,6 +30,7 @@ local plugins = {
 'other',
 'lsp.configs',
 'treesitter',
+'feline',
 }
 
 for x = 1, #plugins do

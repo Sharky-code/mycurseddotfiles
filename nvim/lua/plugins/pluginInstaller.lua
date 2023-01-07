@@ -60,7 +60,7 @@ require('packer').startup(function()
 
 	use 'LionC/nest.nvim'
 
-	-- use 'nvim-lualine/lualine.nvim'
+	use 'nvim-lualine/lualine.nvim'
 	use 'feline-nvim/feline.nvim'
 
 	use 'nvim-treesitter/nvim-treesitter'
@@ -149,4 +149,15 @@ require('packer').startup(function()
 	use 'EvanQuan/vim-executioner' 
 
 	use 'rcarriga/nvim-notify'
+
+	use 'mfussenegger/nvim-dap'
+
+  use 'Pocco81/dap-buddy.nvim'
+
+	use 'mfussenegger/nvim-dap-python'
+
+	use 'stevearc/aerial.nvim'
+
+	use 'chrisbra/unicode.vim'
+
 end)
