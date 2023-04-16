@@ -2,9 +2,11 @@
 -- 	SOME COLOR THEMES DOESN'T SUPPORT INDENT BLANKLINE AND IT TURNS IT INTO THE BG COLOR WHICH MAKES IT INVISIBLE. DETECT IF ITS INVISIBLE AND CHANGE IT INTO A DARKER COLORED GRAY (NOT SO INTRUSIVE) AND APPLY IT WITH :hi
 -- 	SOME COLORSCHEMES MAKE THE ERROR, WARNING, HINT BACKGROUND HIGHLIGHT AVAILABLE AGAIN. CHANGE THIS IN AUTOCMD
 
+local colorscheme = 'nightfox'
+
 require('plugins.pluginInstaller')
 
-vim.cmd('colo nightfox')
+vim.cmd('colo ' .. colorscheme)
 
 require('settings.options')
 require('settings.mappings')
@@ -26,6 +28,7 @@ local plugins = {
 'git',
 'betteresc',
 'bufferline',
+-- 'cokeline',
 'color',
 'other',
 'lsp.configs',
@@ -40,3 +43,20 @@ end
 
 -- vim.cmd('syntax on')
 vim.cmd('Gitsigns toggle_signs')
+
+local winbar_filetype_exclude = {
+  "help",
+  "startify",
+  "dashboard",
+  "packer",
+  "neogitstatus",
+  "NvimTree",
+  "Trouble",
+  "alpha",
+  "lir",
+  "Outline",
+  "spectre_panel",
+  "toggleterm",
+}
+
+vim.cmd('colo ' .. colorscheme)

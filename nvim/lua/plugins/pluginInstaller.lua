@@ -159,5 +159,11 @@ require('packer').startup(function()
 	use 'stevearc/aerial.nvim'
 
 	use 'chrisbra/unicode.vim'
+	
+	use 'fgheng/winbar.nvim'
+
+	use "SmiteshP/nvim-gps"
+
+	use "xiyaowong/transparent.nvim"
 
 end)

@@ -16,13 +16,15 @@ end
 bufferline.setup{
 	options = {
 		separator_style = {"", ""},
+		-- separator_style = "thick",
 		always_show_bufferline = true,
-		numbers = "ordinal",
+		-- numbers = "ordinal",
 		indicator= {style="icon", icon='▎'}, --using this because for some colorschemes that have the NvimTreeVertSplit visible, it matches the style.
+		-- indicator= {style="icon", icon=' '}, --using this because for some colorschemes that have the NvimTreeVertSplit visible, it matches the style.
 		--it also doesn't look weird for colorschemes without NvimTreeVertSplit
 		show_buffer_close_icons = true,
 		show_close_icon = false,
-		enforce_regular_tab = true,
+		enforce_regular_tab = false,
 		diagnostics = "nvim_lsp",
 		-- custom_areas = {
 		--  right = function()
@@ -32,7 +34,7 @@ bufferline.setup{
 		offsets = {
 			{
 				filetype = "NvimTree",
-				text = "File Explorer",
+				text = "",
 				highlight = "NvimTreeNormal",
 				text_align = "center",
 				padding = 0,

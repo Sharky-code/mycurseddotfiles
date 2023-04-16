@@ -1,0 +1,8 @@
+[22:14:52 2023-04-15] FETCHING Version 2.17.2
+[22:14:52 2023-04-15] DOWNLOADING https://github.com/spicetify/spicetify-cli/releases/download/v2.17.2/spicetify-2.17.2-darwin-arm64.tar.gz
+[22:14:53 2023-04-15] EXTRACTING /Users/ethanpun/.spicetify/spicetify.tar.gz
+[22:14:53 2023-04-15] SETTING EXECUTABLE PERMISSIONS TO /Users/ethanpun/.spicetify/spicetify
+[22:14:53 2023-04-15] REMOVING /Users/ethanpun/.spicetify/spicetify.tar.gz
+[22:14:53 2023-04-15] spicetify path already set in /Users/ethanpun/.zshrc, continuing...
+[22:14:53 2023-04-15] spicetify v2.17.2 was installed successfully to /Users/ethanpun/.spicetify
+[22:14:53 2023-04-15] Run 'spicetify --help' to get started

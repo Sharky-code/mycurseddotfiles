@@ -9,32 +9,49 @@ hi! link NvimTreeStatusLineNC Normal
 hi! link TelescopeNormal StatusLineNC
 hi! link TelescopeBorder StatusLineNC
 
+hi! link StatusLineNC Normal
+
+hi! link TabLineFill Normal
+hi! link BufferLineFill Normal
+
+
+autocmd BufWinEnter NvimTree_1 setlocal statusline=%#Normal#
+
 augroup MyColors
 	autocmd!
-	au ColorScheme onenord,tokyonight,catppuccin hi NvimTreeVertSplit guibg=bg guifg=bg 
-
+	au ColorScheme * hi! link NvimTreewinSeparator WinSeparator
+	au ColorScheme * set laststatus=3
+	au ColorScheme nightfox,onenord,tokyonight,catppuccin,carbonfox hi NvimTreeVertSplit guibg=bg guifg=bg 
+	au ColorScheme nightfox,onenord,tokyonight,catppuccin,carbonfox set laststatus=2
+	au ColorScheme nightfox,onenord,tokyonight,catppuccin,carbonfox hi NvimTreeWinSeparator guifg=bg
+	
 	au ColorScheme * hi NonText guifg=bg
 
 	au ColorScheme PaperColor,OceanicNext,OceanicNextLight hi Vertsplit guifg=fg
-	au ColorScheme * hi DiagnosticError guibg=bg
-	au ColorScheme * hi DiagnosticHint guibg=bg
 	au ColorScheme * hi DiagnosticSign guibg=bg
 	au ColorScheme * hi DiagnosticWarn guibg=bg
 	au ColorScheme * hi DiagnosticInfo guibg=bg
   au ColorScheme * hi! link SignColumn LineNr
-  au ColorScheme * hi CursorLineNr guibg=bg
-	au ColorScheme * hi LineNr guibg=bg
-	au ColorScheme * hi CursorLineNr guibg=bg
+ "  au ColorScheme * hi CursorLineNr guibg=bg
+	" au ColorScheme * hi LineNr guibg=bg
 	au ColorScheme * hi VertSplit guibg=bg gui=NONE
 	" au ColorScheme * hi! link Normal NormalNC
+
+	au ColorScheme * hi! link StatusLineNC Normal
+	au ColorScheme * hi NvimTreeStatusLine guibg=None
+	au ColorScheme * hi NvimTreeStatusLineNC guibg=None
 
 	au ColorScheme * syntax on
 
 	au ColorScheme * lua require('plugins.feline').updateColor()
-	au ColorScheme * hi! link NvimTreeStatusLineNC Normal
-	au ColorScheme * hi! link NvimTreeStatusLineNC NormalNC
-	au ColorScheme * hi! link TelescopeNormal StatusLineNC
-	au ColorScheme * hi! link TelescopeBorder StatusLineNC
+
+	" au ColorScheme * hi! link NvimTreeStatusLineNC Normal
+	" au ColorScheme * hi! link NvimTreeStatusLineNC NormalNC
+	" au ColorScheme * hi! link TelescopeNormal StatusLineNC
+	" au ColorScheme * hi! link TelescopeBorder StatusLineNC
+ "  au ColorScheme * hi! link BufferLineFill Normal
+
+	au ColorScheme * hi WinBar gui=bold",italic
 
 
 	
@@ -46,13 +63,20 @@ augroup CursorLine
     au WinEnter * setlocal cursorline
     au BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
+
+		au WinEnter * lua require('plugins.changething').doitnow()
+		au BufWinEnter * lua require('plugins.changething').doitnow()
+
 augroup END
 
 augroup FileStuff
 	autocmd!
 	au FileType NvimTree setlocal signcolumn=no
+	au FileType NvimTree setlocal foldcolumn=4
 	" au FileType SymbolsOutline set signcolumn=no
 augroup END
+
+" au FileType NvimTree setlocal number
 
 " au BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 " au FileType python lua nnooremap <buffer> <F2> echo @% <CR>

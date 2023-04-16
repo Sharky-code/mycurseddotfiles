@@ -3,11 +3,12 @@ local options = {
   signcolumn='yes',
 	foldmethod='expr',
 	foldexpr='nvim_treesitter#foldexpr()',
-	laststatus = 2, --3 if you don't like the stupid nvim tree in the way 
+	-- laststatus = 2, --3 if you don't like the stupid nvim tree in the way 
+	laststatus = 2,
 	nocompatible,
 	swapfile=false,
 	number=true,
-	relativenumber,
+	-- relativenumber,
 	autoindent,
 	scrolloff=5,
 	cursorline=true,
@@ -19,17 +20,21 @@ local options = {
 	smartindent=true,
 	foldlevel=20,
 	showtabline=2,
-	relativenumber=true,
+	-- relativenumber=true,
 	syntax='on',
 	showmode=false,
-	termguicolors=true
+	termguicolors=true,
+	numberwidth=1,
+	cmdheight=0,
+
+	-- showtabline=0,
 }
 
 for k, v in pairs(options) 
 	do vim.opt[k] = v
 end
---vim.cmd('set fillchars=vert:\\▏,eob:\\ ,horizup:\\─,vertleft:\\▏,vertright:\\▏,verthoriz:\\▏')
-vim.cmd('set fillchars=vert:\\▎,eob:\\ ,horizup:\\─,vertleft:\\▎,vertright:\\▎,verthoriz:\\▎')
+vim.cmd('set fillchars=vert:\\▏,eob:\\ ,horizup:\\─,vertleft:\\▏,vertright:\\▏,verthoriz:\\▏, stl: ')
+-- vim.cmd('set fillchars=vert:\\▎,eob:\\ ,horizup:\\─,vertleft:\\▎,vertright:\\▎,verthoriz:\\▎')
 
 vim.cmd [[
 hi DiagnosticError guibg=bg
@@ -44,7 +49,7 @@ hi! link NvimTreeVertSplit VertSplit
 ]]
 
 -- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 --kitty can't render emojis well apparently
 --one emoji and the entire thing is ruined and everything glitch out
 
